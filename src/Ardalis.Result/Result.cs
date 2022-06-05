@@ -14,6 +14,16 @@ namespace Ardalis.Result
             }
         }
 
+        public Result(ResultStatus status, T value)
+        {
+            Status = status;
+            Value = value;
+            if (Value != null)
+            {
+                ValueType = Value.GetType();
+            }
+        }
+
         private Result(ResultStatus status)
         {
             Status = status;
@@ -28,6 +38,7 @@ namespace Ardalis.Result
         public ResultStatus Status { get; private set; } = ResultStatus.Ok;
         public bool IsSuccess => Status == ResultStatus.Ok;
         public string SuccessMessage { get; private set; } = string.Empty;
+        public string Uri { get; private set; } = string.Empty;
         public IEnumerable<string> Errors { get; private set; } = new List<string>();
         public List<ValidationError> ValidationErrors { get; private set; } = new List<ValidationError>();
 
@@ -51,7 +62,7 @@ namespace Ardalis.Result
         {
             var pagedResult = new PagedResult<T>(pagedInfo, Value)
             {
-                Status = Status, 
+                Status = Status,
                 SuccessMessage = SuccessMessage,
                 Errors = Errors,
                 ValidationErrors = ValidationErrors
@@ -79,7 +90,18 @@ namespace Ardalis.Result
         /// <returns>A Result<typeparamref name="T"/></returns>
         public static Result<T> Success(T value, string successMessage)
         {
-            return new Result<T>(value) {SuccessMessage = successMessage};
+            return new Result<T>(value) { SuccessMessage = successMessage };
+        }
+
+        /// <summary>
+        /// This is similar to Ok, but can be used when a new value has been created.
+        /// See also HTTP 201 Created: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success
+        /// </summary>
+        /// <returns>A Result<typeparamref name="T"/></returns>
+        public static Result<T> Created(T value, string uri)
+        {
+            return new Result<T>(ResultStatus.Created, value) { Uri = uri };
+
         }
 
         /// <summary>
@@ -133,23 +155,13 @@ namespace Ardalis.Result
         }
 
         /// <summary>
-        /// This is similar to Forbidden, but should be used when the user has not authenticated or has attempted to authenticate but failed.
+        /// This is similar to Ok, but should be used when operation is successful but no data is returned.
         /// See also HTTP 204 NoContent: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success
         /// </summary>
         /// <returns>A Result<typeparamref name="T"/></returns>
         public static Result<T> NoContent()
         {
             return new Result<T>(ResultStatus.NoContent);
-        }
-
-        /// <summary>
-        /// This is similar to Forbidden, but should be used when the user has not authenticated or has attempted to authenticate but failed.
-        /// See also HTTP 201 Unauthorized: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success
-        /// </summary>
-        /// <returns>A Result<typeparamref name="T"/></returns>
-        public static Result<T> Created(T value)
-        {
-            return new Result<T>(ResultStatus.Created);
         }
     }
 }

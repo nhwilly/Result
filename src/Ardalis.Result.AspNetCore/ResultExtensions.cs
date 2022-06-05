@@ -44,6 +44,8 @@ namespace Ardalis.Result.AspNetCore
                 case ResultStatus.Forbidden: return controller.Forbid();
                 case ResultStatus.Invalid: return BadRequest(controller, result);
                 case ResultStatus.Error: return UnprocessableEntity(controller, result);
+                case ResultStatus.Created: return controller.Created(result?.Uri, result.GetValue());
+                case ResultStatus.NoContent: return controller.NoContent();
                 default:
                     throw new NotSupportedException($"Result {result.Status} conversion is not supported.");
             }
