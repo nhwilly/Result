@@ -131,5 +131,25 @@ namespace Ardalis.Result
         {
             return new Result<T>(ResultStatus.Unauthorized);
         }
+
+        /// <summary>
+        /// This is similar to Forbidden, but should be used when the user has not authenticated or has attempted to authenticate but failed.
+        /// See also HTTP 204 NoContent: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success
+        /// </summary>
+        /// <returns>A Result<typeparamref name="T"/></returns>
+        public static Result<T> NoContent()
+        {
+            return new Result<T>(ResultStatus.NoContent);
+        }
+
+        /// <summary>
+        /// This is similar to Forbidden, but should be used when the user has not authenticated or has attempted to authenticate but failed.
+        /// See also HTTP 201 Unauthorized: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success
+        /// </summary>
+        /// <returns>A Result<typeparamref name="T"/></returns>
+        public static Result<T> Created(T value)
+        {
+            return new Result<T>(ResultStatus.Created);
+        }
     }
 }
