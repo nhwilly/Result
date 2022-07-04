@@ -19,6 +19,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

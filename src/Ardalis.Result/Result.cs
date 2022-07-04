@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+// hi
 namespace Ardalis.Result
 {
     public class Result<T> : IResult
@@ -98,7 +98,7 @@ namespace Ardalis.Result
         /// See also HTTP 201 Created: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success
         /// </summary>
         /// <returns>A Result<typeparamref name="T"/></returns>
-        public static Result<T> Created(T value, string uri)
+        public static Result<T> Created(string uri, T value)
         {
             return new Result<T>(ResultStatus.Created, value) { Uri = uri };
 
@@ -132,6 +132,15 @@ namespace Ardalis.Result
         public static Result<T> NotFound()
         {
             return new Result<T>(ResultStatus.NotFound);
+        }
+
+        /// <summary>
+        /// Represents the situation where a service was unable to find a requested resource.
+        /// </summary>
+        /// <returns>A Result<typeparamref name="T"/></returns>
+        public static Result<T> Conflict(params string[] errorMessages)
+        {
+            return new Result<T>(ResultStatus.Conflict) { Errors = errorMessages };
         }
 
         /// <summary>

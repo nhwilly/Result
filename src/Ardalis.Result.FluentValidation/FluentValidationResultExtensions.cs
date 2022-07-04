@@ -7,18 +7,18 @@ namespace Ardalis.Result.FluentValidation
 {
     public static class FluentValidationResultExtensions
     {
-        public static List<ValidationError> AsErrors(this ValidationResult valResult)
+        public static List<ValidationError> AsErrors(this ValidationResult validationResult)
         {
             var resultErrors = new List<ValidationError>();
 
-            foreach (var valFailure in valResult.Errors)
+            foreach (var validationFailure in validationResult.Errors)
             {
                 resultErrors.Add(new ValidationError()
                 {
-                    Severity = FromSeverity(valFailure.Severity),
-                    ErrorMessage = valFailure.ErrorMessage,
-                    ErrorCode = valFailure.ErrorCode,
-                    Identifier = valFailure.PropertyName
+                    Severity = FromSeverity(validationFailure.Severity),
+                    ErrorMessage = validationFailure.ErrorMessage,
+                    ErrorCode = validationFailure.ErrorCode,
+                    Identifier = validationFailure.PropertyName
                 });
             }
 

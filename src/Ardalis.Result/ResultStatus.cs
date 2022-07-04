@@ -9,6 +9,7 @@
         Invalid,
         NotFound,
         Created,
-        NoContent
+        NoContent,
+        Conflict
     }
 }
