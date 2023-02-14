@@ -35,7 +35,7 @@ namespace Ardalis.Result
         public T Value { get; }
 
         public Type ValueType { get; private set; }
-        public ResultStatus Status { get; private set; } = ResultStatus.Ok;
+        public ResultStatus Status { get; protected set; } = ResultStatus.Ok;
         public bool IsSuccess => Status == ResultStatus.Ok;
         public string SuccessMessage { get; private set; } = string.Empty;
         public string Uri { get; private set; } = string.Empty;
