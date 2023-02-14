@@ -14,14 +14,14 @@
     <PackageTags>result;pattern;web;api;aspnetcore;mvc;FluentValidation;Validation</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>Syncing with Ardalis.Result; updated to latest version of FluentValidation</PackageReleaseNotes>
-    <Version>3.1.3</Version>
+    <Version>3.1.4</Version>
     <AssemblyName>Ardalis.Result.FluentValidation</AssemblyName>
     <PackageIcon>icon.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <LangVersion>latest</LangVersion>
-    <AssemblyVersion>3.1.3</AssemblyVersion>
-    <FileVersion>3.1.3</FileVersion>
+    <AssemblyVersion>3.1.4</AssemblyVersion>
+    <FileVersion>3.1.4</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

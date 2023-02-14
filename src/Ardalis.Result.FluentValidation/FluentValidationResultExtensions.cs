@@ -25,6 +25,24 @@ namespace Ardalis.Result.FluentValidation
             return resultErrors;
         }
 
+        public static List<ValidationError> AsErrors(this List<ValidationFailure> failures)
+        {
+            var resultErrors = new List<ValidationError>();
+
+            foreach (var validationFailure in failures)
+            {
+                resultErrors.Add(new ValidationError()
+                {
+                    Severity = FromSeverity(validationFailure.Severity),
+                    ErrorMessage = validationFailure.ErrorMessage,
+                    ErrorCode = validationFailure.ErrorCode,
+                    Identifier = validationFailure.PropertyName
+                });
+            }
+
+            return resultErrors;
+        }
+
         public static ValidationSeverity FromSeverity(Severity severity)
         {
             switch (severity)
