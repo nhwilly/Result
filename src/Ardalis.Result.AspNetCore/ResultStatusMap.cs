@@ -43,7 +43,10 @@ namespace Ardalis.Result.AspNetCore
                 .For(ResultStatus.Unavailable, HttpStatusCode.ServiceUnavailable, resultStatusOptions =>
                     resultStatusOptions
                         .With(UnavailableEntity))
-                .For(ResultStatus.NoContent, HttpStatusCode.NoContent);
+                .For(ResultStatus.NoContent, HttpStatusCode.NoContent)
+                .For(ResultStatus.Cancelled, (HttpStatusCode)499, resultStatusOptions =>
+                    resultStatusOptions
+                        .With(CancelledEntity));
 
         /// <summary>
         /// Maps <paramref name="status"/> to <paramref name="defaultStatusCode"/>.
@@ -170,6 +173,19 @@ namespace Ardalis.Result.AspNetCore
             return new ProblemDetails
             {
                 Title = "Service is unavailable.",
+                Detail = result.Errors.Any() ? details.ToString() : null
+            };
+        }
+
+        private static ProblemDetails CancelledEntity(ControllerBase controller, IResult result)
+        {
+            var details = new StringBuilder("Next error(s) occurred:");
+
+            foreach (var error in result.Errors) details.Append("* ").Append(error).AppendLine();
+
+            return new ProblemDetails
+            {
+                Title = "Request cancelled.",
                 Detail = result.Errors.Any() ? details.ToString() : null
             };
         }

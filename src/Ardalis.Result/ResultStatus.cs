@@ -12,6 +12,7 @@
         NoContent,
         Conflict,
         CriticalError,
-        Unavailable
+        Unavailable,
+        Cancelled
     }
 }

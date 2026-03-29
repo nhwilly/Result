@@ -39,6 +39,7 @@ public static partial class ResultExtensions
             ResultStatus.Conflict => ConflictEntity(result),
             ResultStatus.Unavailable => UnavailableEntity(result),
             ResultStatus.CriticalError => CriticalEntity(result),
+            ResultStatus.Cancelled => CancelledEntity(result),
             _ => throw new NotSupportedException($"Result {result.Status} conversion is not supported."),
         };
 
@@ -155,6 +156,27 @@ public static partial class ResultExtensions
         else
         {
             return Results.Forbid();
+        }
+    }
+
+    private static Microsoft.AspNetCore.Http.IResult CancelledEntity(IResult result)
+    {
+        var details = new StringBuilder("Next error(s) occurred:");
+
+        if (result.Errors.Any())
+        {
+            foreach (var error in result.Errors) details.Append("* ").Append(error).AppendLine();
+
+            return Results.Problem(new ProblemDetails
+            {
+                Title = "Request cancelled.",
+                Detail = details.ToString(),
+                Status = 499
+            });
+        }
+        else
+        {
+            return Results.StatusCode(499);
         }
     }
 

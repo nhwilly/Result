@@ -333,6 +333,9 @@ namespace Ardalis.Result
                     result.Errors.ToArray()
                 ),
                 ResultStatus.NoContent => Result<TDestination>.NoContent(),
+                ResultStatus.Cancelled => result.Errors.Any()
+                    ? Result<TDestination>.Cancelled(result.Errors.ToArray())
+                    : Result<TDestination>.Cancelled(),
                 _ => throw new NotSupportedException(
                     $"Result {result.Status} conversion is not supported."
                 ),
@@ -366,6 +369,9 @@ namespace Ardalis.Result
                     result.Errors.ToArray()
                 ),
                 ResultStatus.NoContent => Result<TDestination>.NoContent(),
+                ResultStatus.Cancelled => result.Errors.Any()
+                    ? Result<TDestination>.Cancelled(result.Errors.ToArray())
+                    : Result<TDestination>.Cancelled(),
                 _ => throw new NotSupportedException(
                     $"Result {result.Status} conversion is not supported."
                 ),
@@ -395,6 +401,9 @@ namespace Ardalis.Result
                 ResultStatus.CriticalError => Result.CriticalError(result.Errors.ToArray()),
                 ResultStatus.Unavailable => Result.Unavailable(result.Errors.ToArray()),
                 ResultStatus.NoContent => Result.NoContent(),
+                ResultStatus.Cancelled => result.Errors.Any()
+                    ? Result.Cancelled(result.Errors.ToArray())
+                    : Result.Cancelled(),
                 _ => throw new NotSupportedException(
                     $"Result {result.Status} conversion is not supported."
                 ),
@@ -442,6 +451,10 @@ namespace Ardalis.Result
                     return Result.Unavailable(result.Errors.ToArray());
                 case ResultStatus.NoContent:
                     return Result.NoContent();
+                case ResultStatus.Cancelled:
+                    return result.Errors.Any()
+                        ? Result.Cancelled(result.Errors.ToArray())
+                        : Result.Cancelled();
                 default:
                     throw new NotSupportedException(
                         $"Result {result.Status} conversion is not supported."

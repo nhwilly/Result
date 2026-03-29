@@ -190,5 +190,21 @@ namespace Ardalis.Result
         /// </summary>
         /// <returns>A Result object</returns>
         public new static Result NoContent() => new(ResultStatus.NoContent);
+
+        /// <summary>
+        /// Represents a situation where the operation was cancelled by the client before completion.
+        /// See also HTTP 499 Client Closed Request (used by nginx and other frameworks).
+        /// </summary>
+        /// <returns>A Result</returns>
+        public new static Result Cancelled() => new(ResultStatus.Cancelled);
+
+        /// <summary>
+        /// Represents a situation where the operation was cancelled by the client before completion.
+        /// Error messages may be provided and will be exposed via the Errors property.
+        /// See also HTTP 499 Client Closed Request (used by nginx and other frameworks).
+        /// </summary>
+        /// <param name="errorMessages">A list of string error messages.</param>
+        /// <returns>A Result</returns>
+        public new static Result Cancelled(params string[] errorMessages) => new(ResultStatus.Cancelled) { Errors = errorMessages };
     }
 }

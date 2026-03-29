@@ -1,31 +1,28 @@
-﻿namespace Ardalis.Result
+﻿namespace Ardalis.Result;
+
+public class ValidationError
 {
-    public class ValidationError
-    {
-        public ValidationError()
-        {
-        }
+  public ValidationError() { }
 
-        public ValidationError(string errorMessage) => ErrorMessage = errorMessage;
+  public ValidationError(string errorMessage) => ErrorMessage = errorMessage;
 
-        public ValidationError(string identifier, string errorMessage)
-        {
-            Identifier = identifier;
-            ErrorMessage = errorMessage;
-        }
+  public ValidationError(string identifier, string errorMessage)
+  {
+    Identifier = identifier;
+    ErrorMessage = errorMessage;
+  }
 
-        public ValidationError(string identifier, string errorMessage, string errorCode, ValidationSeverity severity)
-        {
-            Identifier = identifier;
-            ErrorMessage = errorMessage;
-            ErrorCode = errorCode;
-            Severity = severity;
-        }
+  public ValidationError(string identifier, string errorMessage, string errorCode, ValidationSeverity severity)
+  {
+    Identifier = identifier;
+    ErrorMessage = errorMessage;
+    ErrorCode = errorCode;
+    Severity = severity;
+  }
 
-        public string Identifier { get; set; }
-        // TODO: Mark required and limit setting (see #179)
-        public string ErrorMessage { get; set; }
-        public string ErrorCode { get; set; }
-        public ValidationSeverity Severity { get; set; } = ValidationSeverity.Error;
-    }
+  public string Identifier { get; set; }
+  // TODO: Mark required and limit setting (see #179)
+  public string ErrorMessage { get; set; }
+  public string ErrorCode { get; set; }
+  public ValidationSeverity Severity { get; set; } = ValidationSeverity.Error;
 }

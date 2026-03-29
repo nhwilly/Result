@@ -56,4 +56,9 @@ public static class IResultExtensions
     /// Returns true if the result is unavailable (status is Unavailable).
     /// </summary>
     public static bool IsUnavailable(this IResult result) => result.Status == ResultStatus.Unavailable;
+
+    /// <summary>
+    /// Returns true if the result is cancelled (status is Cancelled).
+    /// </summary>
+    public static bool IsCancelled(this IResult result) => result.Status == ResultStatus.Cancelled;
 }

@@ -237,5 +237,21 @@ namespace Ardalis.Result
         /// <typeparam name="T">The type parameter representing the expected response data.</typeparam>
         /// <returns>A Result object</returns>
         public static Result<T> NoContent() => new(ResultStatus.NoContent);
+
+        /// <summary>
+        /// Represents a situation where the operation was cancelled by the client before completion.
+        /// See also HTTP 499 Client Closed Request (used by nginx and other frameworks).
+        /// </summary>
+        /// <returns>A Result<typeparamref name="T"/></returns>
+        public static Result<T> Cancelled() => new(ResultStatus.Cancelled);
+
+        /// <summary>
+        /// Represents a situation where the operation was cancelled by the client before completion.
+        /// Error messages may be provided and will be exposed via the Errors property.
+        /// See also HTTP 499 Client Closed Request (used by nginx and other frameworks).
+        /// </summary>
+        /// <param name="errorMessages">A list of string error messages.</param>
+        /// <returns>A Result<typeparamref name="T"/></returns>
+        public static Result<T> Cancelled(params string[] errorMessages) => new(ResultStatus.Cancelled) { Errors = errorMessages };
     }
 }
