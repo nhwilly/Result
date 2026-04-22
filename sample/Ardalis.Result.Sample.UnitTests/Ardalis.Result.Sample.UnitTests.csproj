@@ -23,4 +23,15 @@
     <ProjectReference Include="..\Ardalis.Result.Sample.Core\Ardalis.Result.Sample.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageVersion Update="PolySharp" Version="1.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>

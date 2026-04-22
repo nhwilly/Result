@@ -31,6 +31,10 @@
   <ItemGroup>
     <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGet.Common" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ardalis.Result\Ardalis.Result.csproj" />
   </ItemGroup>

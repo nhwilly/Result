@@ -6,10 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Condition=" '$(TargetFramework)' != 'net6.0' "/>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Condition=" '$(TargetFramework)' == 'net6.0' " VersionOverride="6.0.23"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" />
+    <PackageReference Include="NuGet.Common" />
+    <PackageReference Include="NuGet.Packaging" />
+    <PackageReference Include="NuGet.Protocol" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +26,17 @@
   <ItemGroup>
     <ProjectReference Include="..\Ardalis.Result.SampleWeb\Ardalis.Result.SampleWeb.csproj" />
     <ProjectReference Include="..\Ardalis.Result.Sample.Core\Ardalis.Result.Sample.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Update="PolySharp" Version="1.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

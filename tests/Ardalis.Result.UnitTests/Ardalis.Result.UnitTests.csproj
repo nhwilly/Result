@@ -3,6 +3,7 @@
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" />
+    <PackageReference Include="NuGet.Common" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
       <PrivateAssets>all</PrivateAssets>
@@ -16,6 +17,17 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Ardalis.Result\Ardalis.Result.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Update="PolySharp" Version="1.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

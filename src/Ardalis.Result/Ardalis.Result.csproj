@@ -29,6 +29,9 @@
 		<PackageReference Include="System.Text.Json" />
 	</ItemGroup>
 	<ItemGroup>
+	  <PackageReference Include="NuGet.Common" />
+	</ItemGroup>
+	<ItemGroup>
 	  <PackageVersion Update="PolySharp" Version="1.15.0" />
 	</ItemGroup>
 	<ItemGroup>

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,9 +11,20 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Ardalis.Result.AspNetCore\Ardalis.Result.AspNetCore.csproj">
-      <SetTargetFramework>TargetFramework=net8.0</SetTargetFramework>
+      <SetTargetFramework>TargetFramework=net10.0</SetTargetFramework>
     </ProjectReference>
     <ProjectReference Include="..\Ardalis.Result.Sample.Core\Ardalis.Result.Sample.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Update="PolySharp" Version="1.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
